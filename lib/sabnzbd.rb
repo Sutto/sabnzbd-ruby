@@ -139,6 +139,7 @@ class SABnzbd
     
     def local
       s = self.settings
+      base_uri "#{s["misc"]["host"]}:#{s["misc"]["port"]}"
       self.new(s["misc"]["username"], s["misc"]["password"])
     end
     
