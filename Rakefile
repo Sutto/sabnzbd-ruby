@@ -12,6 +12,7 @@ begin
     s.homepage = "http://github.com/Sutto/SABnzbd"
     s.description = "Ruby interface to the SABnzbd usenet client"
     s.authors = ["Darcy Laycock"]
+    s.add_dependency 'httparty'
   end
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"

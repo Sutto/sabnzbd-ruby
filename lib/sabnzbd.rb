@@ -4,9 +4,9 @@ require 'httparty'
 class SABnzbd
   
   class Job
-    attr_accessor :id, :left, :done, :msgid, :filename
-    def initialize(id, left, done, msgid, filename)
-      self.id, self.left, self.done, self.msgid, self.filename = id, left, done, msgid, filename
+    attr_accessor :id, :left, :total, :msgid, :filename
+    def initialize(id, left, total, msgid, filename)
+      self.id, self.left, self.total, self.msgid, self.filename = id, left, total, msgid, filename
     end
   end
   
@@ -57,12 +57,15 @@ class SABnzbd
   include HTTParty
   base_uri 'localhost:8080'
   
-  def initialize(username, password)
+  def initialize(username = '', password = '')
     login(username, password)
   end
   
   def login(username, password)
-    self.class.default_params :ma_username => username, :ma_password => password
+    opts = {}
+    opts[:ma_username] = username unless username.blank?
+    opts[:ma_password] = password unless password.blank?
+    self.class.default_params(opts)
   end
   
   def status
