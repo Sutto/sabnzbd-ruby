@@ -7,10 +7,10 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |s|
     s.name = "SABnzbd"
-    s.summary = "TODO"
+    s.summary = "Ruby interface to the SABnzbd usenet client"
     s.email = "sutto@sutto.net"
     s.homepage = "http://github.com/Sutto/SABnzbd"
-    s.description = "TODO"
+    s.description = "Ruby interface to the SABnzbd usenet client"
     s.authors = ["Darcy Laycock"]
   end
 rescue LoadError
