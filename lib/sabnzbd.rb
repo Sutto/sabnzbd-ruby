@@ -77,12 +77,35 @@ class SABnzbd
     verify api_call(:shutdown)
   end
   
+  def autoshutdown=(value)
+    options = {:name => (value ? "1" : "0")}
+    verify api_call(:autoshutdown, options)
+  end
+  
   def resume!
     verify api_call(:resume)
   end
   
   def pause!
     verify api_call(:pause)
+  end
+  
+  def add_url(url, category = nil, job_options = nil, script = nil)
+    options          = {}
+    options[:name]   = url
+    options[:cat]    = category if !category.blank?
+    options[:pp]     = job_options if !job_options.blank?
+    options[:script] = script if !script.blank?
+    verify api_call(:addurl, options)
+  end
+  
+  def add_newzbin(id, category = nil, job_options = nil, script = nil)
+    options          = {}
+    options[:name]   = id
+    options[:cat]    = category if !category.blank?
+    options[:pp]     = job_options if !job_options.blank?
+    options[:script] = script if !script.blank?
+    verify api_call(:addid, options)
   end
   
   def api_call(mode, opts = {})

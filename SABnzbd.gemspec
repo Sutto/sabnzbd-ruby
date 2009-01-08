@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.date = %q{2009-01-08}
   s.description = %q{Ruby interface to the SABnzbd usenet client}
   s.email = %q{sutto@sutto.net}
-  s.files = ["SABnzbd-0.1.0.gem", "SABnzbd.gemspec", "VERSION.yml", "example/simple.rb", "lib/sabnzbd.rb", "test/sabnzbd_test.rb", "test/test_helper.rb"]
+  s.files = ["VERSION.yml", "example/simple.rb", "lib/sabnzbd.rb", "test/sabnzbd_test.rb", "test/test_helper.rb"]
   s.homepage = %q{http://github.com/Sutto/SABnzbd}
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.1}
