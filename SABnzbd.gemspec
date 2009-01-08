@@ -2,14 +2,14 @@
 
 Gem::Specification.new do |s|
   s.name = %q{SABnzbd}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Darcy Laycock"]
   s.date = %q{2009-01-08}
   s.description = %q{Ruby interface to the SABnzbd usenet client}
   s.email = %q{sutto@sutto.net}
-  s.files = ["VERSION.yml", "example/simple.rb", "lib/sabnzbd.rb", "test/sabnzbd_test.rb", "test/test_helper.rb"]
+  s.files = ["SABnzbd.gemspec", "VERSION.yml", "example/simple.rb", "lib/sabnzbd.rb", "test/sabnzbd_test.rb", "test/test_helper.rb"]
   s.homepage = %q{http://github.com/Sutto/SABnzbd}
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.1}
