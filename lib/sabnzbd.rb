@@ -57,15 +57,17 @@ class SABnzbd
   include HTTParty
   base_uri 'localhost:8080'
   
-  def initialize(username = '', password = '')
-    login(username, password)
+  def initialize(auth = {})
+    @auth_params = {}
+    login(auth)
   end
   
-  def login(username, password)
+  def login(auth = {})
     opts = {}
-    opts[:ma_username] = username unless username.blank?
-    opts[:ma_password] = password unless password.blank?
-    self.class.default_params(opts)
+    opts[:ma_username] = auth[:username] if auth.has_key?(:username)
+    opts[:ma_password] = auth[:password] if auth.has_key?(:password)
+    opts[:apikey]      = auth[:api_key]  if auth.has_key?(:api_key)
+    @auth_params = opts
   end
   
   def status
@@ -109,8 +111,9 @@ class SABnzbd
   end
   
   def api_call(mode, opts = {})
-    opts.merge!(:mode => mode.to_s)
-    return self.class.get("/sabnzbd/api", :query => opts)
+    opts = opts.merge(:mode => mode.to_s).merge(@auth_params)
+    result = self.class.get("/sabnzbd/api", :query => opts)
+    return result
   end
   
   def verify(text)
@@ -140,7 +143,13 @@ class SABnzbd
     def local
       s = self.settings
       base_uri "#{s["misc"]["host"]}:#{s["misc"]["port"]}"
-      self.new(s["misc"]["username"], s["misc"]["password"])
+      use_api_key = s["misc"]["disable_api_key"] == "0"
+      opts = {
+        :username => s["misc"]["username"],
+        :password => s["misc"]["password"],
+      }
+      opts.merge!(:api_key => s["misc"]["api_key"]) unless s["misc"]["disable_api_key"] == "1"
+      self.new(opts)
     end
     
     protected
